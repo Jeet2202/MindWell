@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Portal</title>
+<link rel="stylesheet" href="StudentPortal.css">
+
+<!-- <style>
+body { font-family: Arial, sans-serif; margin: 20px; }
+video { width: 45%; border: 1px solid #ccc; margin: 5px; }
+#controls { margin-top: 10px; }
+button { margin-right: 10px; padding: 8px 12px; cursor: pointer; }
+#transcript { margin-top: 10px; background: #f0f0f0; padding: 10px; height: 150px; overflow-y: auto; }
+</style> -->
+</head>
+<body>
+<h2>Student Portal</h2>
+<input type="text" id="roomId" placeholder="Enter Room ID"/>
+<button id="joinBtn">Join Session</button>
+
+<div id="videoContainer">
+  <video id="studentVideo" autoplay muted></video>
+  <video id="counselorVideo" autoplay></video>
+</div>
+
+<div id="controls">
+  <button id="toggleVideo">Toggle Video</button>
+  <button id="toggleAudio">Toggle Audio</button>
+  <button id="endBtn">End Session</button>
+</div>
+
+<h3>Live Transcript:</h3>
+<div id="transcript"></div>
+
+<!-- <script src="/socket.io/socket.io.js"></script>
+<script>
+const socket = io();
+let localStream, peerConnection;
+const config = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] };
+
+const joinBtn = document.getElementById('joinBtn');
+const roomInput = document.getElementById('roomId');
+const studentVideo = document.getElementById('studentVideo');
+const counselorVideo = document.getElementById('counselorVideo');
+const transcriptDiv = document.getElementById('transcript');
+
+joinBtn.onclick = async () => {
+    const roomId = roomInput.value.trim();
+    if (!roomId) return alert("Enter Room ID");
+
+    localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    studentVideo.srcObject = localStream;
+
+    socket.emit('join-room', roomId);
+
+    peerConnection = new RTCPeerConnection(config);
+    localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
+
+    peerConnection.ontrack = (event) => {
+        counselorVideo.srcObject = event.streams[0];
+    };
+
+    peerConnection.onicecandidate = (event) => {
+        if (event.candidate) socket.emit('signal', { to: 'counselor', signal: event.candidate });
+    };
+
+    // Listen for signals from counselor
+    socket.on('signal', async (data) => {
+        if (data.signal.type === 'offer') {
+            await peerConnection.setRemoteDescription(new RTCSessionDescription(data.signal));
+            const answer = await peerConnection.createAnswer();
+            await peerConnection.setLocalDescription(answer);
+            socket.emit('signal', { to: 'counselor', signal: answer });
+        } else if (data.signal.candidate) {
+            await peerConnection.addIceCandidate(new RTCIceCandidate(data.signal));
+        }
+    });
+
+    // Speech recognition
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.onresult = (event) => {
+        const transcript = Array.from(event.results).map(r => r[0].transcript).join('');
+        transcriptDiv.innerText = transcript;
+        socket.emit('transcript', { room: roomId, transcript });
+    };
+    recognition.start();
+};
+
+document.getElementById('toggleVideo').onclick = () => {
+    if(localStream) localStream.getVideoTracks()[0].enabled = !localStream.getVideoTracks()[0].enabled;
+};
+document.getElementById('toggleAudio').onclick = () => {
+    if(localStream) localStream.getAudioTracks()[0].enabled = !localStream.getAudioTracks()[0].enabled;
+};
+document.getElementById('endBtn').onclick = () => location.reload();
+</script> -->
+<script src="/socket.io/socket.io.js"></script> 
+<script src="StudentPortal.js"></script>
+</body>
+</html>

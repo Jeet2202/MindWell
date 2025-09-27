@@ -1,0 +1,25 @@
+{
+  "name": "online",
+  "version": "1.0.0",
+  "description": "Student-Counselor Video Conferencing with AI Report",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "video",
+    "webrtc",
+    "socket.io",
+    "ai",
+    "openai",
+    "hackathon"
+  ],
+  "author": "Jeet",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "openai": "^5.23.1",
+    "socket.io": "^4.8.1"
+  }
+}
