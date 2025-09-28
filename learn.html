@@ -1603,7 +1603,7 @@
                             <span>${appointment.time}</span>
                         </div>
                         <div class="flex space-x-2">
-                            <button onclick="startVideoCall('${appointment.counselor}')" class="flex-1 bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition">
+                            <button onclick="openStudent()" class="flex-1 bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition">
                                 <i class="fas fa-video mr-2"></i>Join Video Call
                             </button>
                             <button onclick="rescheduleAppointment(${appointment.id})" class="flex-1 bg-white border border-gray-300 text-gray-700 py-2 rounded-lg hover:bg-gray-50 transition">
@@ -2112,6 +2112,10 @@
             }, 3000);
         }
 
+        function openStudent()
+        {
+          window.location.href='http://localhost:3000/StudentPortal.html';
+        }
         function loadStoredData() {
             // Load mood data
             const storedMoodData = localStorage.getItem('moodData');
