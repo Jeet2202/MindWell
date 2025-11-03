@@ -23,7 +23,8 @@ io.on('connection', socket => {
     });
 
     socket.on('signal', data => {
-        io.to(data.to).emit('signal', { from: socket.id, signal: data.signal });
+        // Broadcast signal to all other users in the room except sender
+        socket.to(data.room).emit('signal', { from: socket.id, signal: data.signal });
     });
 
     socket.on('transcript', data => {
