@@ -15,9 +15,18 @@ io.on('connection', socket => {
 
     socket.on('join-room', roomId => {
         socket.join(roomId);
+        console.log(`User ${socket.id} joined room ${roomId}`);
+        // Notify others in the room that a new user connected
         socket.to(roomId).emit('user-connected', socket.id);
+        
+        // Send list of existing users in room to the new joiner
+        const room = io.sockets.adapter.rooms.get(roomId);
+        if (room) {
+            socket.emit('room-users', Array.from(room).filter(id => id !== socket.id));
+        }
 
         socket.on('disconnect', () => {
+            console.log(`User ${socket.id} disconnected from room ${roomId}`);
             socket.to(roomId).emit('user-disconnected', socket.id);
         });
     });
