@@ -1,0 +1,67 @@
+.reviews-section {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, rgba(76, 175, 254, 0.03) 0%, rgba(102, 126, 234, 0.03) 100%);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.review-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.review-avatar {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.review-info {
+  flex: 1;
+}
+
+.review-name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.25rem;
+}
+
+.review-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-light);
+  font-style: italic;
+  margin: 0;
+}
+
+.review-role {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .reviews-section {
+    padding: 4rem 0;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+}
