@@ -1,31 +1,25 @@
 {
-  "name": "mindwell",
+  "name": "online",
   "version": "1.0.0",
-  "description": "MindWell - Modern Mental Health Platform",
-  "type": "module",
+  "description": "Student-Counselor Video Conferencing with AI Report",
+  "main": "server.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "start": "node server.js"
   },
   "keywords": [
-    "mental-health",
-    "counseling",
-    "react",
-    "vite"
+    "video",
+    "webrtc",
+    "socket.io",
+    "ai",
+    "openai",
+    "hackathon"
   ],
   "author": "Jeet",
   "license": "ISC",
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.0",
-    "framer-motion": "^11.0.0"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.66",
-    "@types/react-dom": "^18.2.22",
-    "@vitejs/plugin-react": "^4.2.1",
-    "vite": "^5.2.0"
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "openai": "^5.23.1",
+    "socket.io": "^4.8.1"
   }
 }
