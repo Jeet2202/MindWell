@@ -4,10 +4,22 @@ const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const OpenAI = require('openai');
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+let openai;
+if (process.env.OPENAI_API_KEY) {
+    openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+    console.log("✅ OpenAI initialized");
+} else {
+    console.warn("⚠️ Warning: OPENAI_API_KEY is missing. AI reporting will be disabled.");
+}
 
 app.use(express.static('public'));
+app.use(express.static('.')); // Serve root files like index.html
 app.use(express.json());
+
+// Landing page route
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
 
 // Socket.io for video + transcript
 io.on('connection', socket => {
@@ -43,6 +55,9 @@ io.on('connection', socket => {
 
 // ✅ AI report endpoint
 app.post('/generate-report', async (req, res) => {
+    if (!openai) {
+        return res.status(503).json({ error: "AI service is not configured (missing API key)" });
+    }
     const { transcript } = req.body;
     if (!transcript) {
         return res.status(400).json({ error: "Transcript required" });

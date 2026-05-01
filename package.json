@@ -4,7 +4,8 @@
   "description": "Student-Counselor Video Conferencing with AI Report",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "node --watch server.js"
   },
   "keywords": [
     "video",

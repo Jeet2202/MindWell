@@ -87,12 +87,15 @@
                     <a href="#appointments" class="nav-link text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition">Appointments</a>
                     <a href="#assessments" class="nav-link text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition">Assessments</a>
                     <a href="#peer-chat" class="nav-link text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition">Peer Support</a>
-                    <a onclick="openLearn()" class="nav-link text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition">Learn</a>
+                    <a href="#learning" class="nav-link text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition">Learn</a>
                 </div>
-                <div class="flex items-center">
+                <div class="flex items-center space-x-4">
                     <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
                         <i class="fas fa-user-circle mr-2"></i>Profile
                     </button>
+                    <a href="/index.html" class="text-gray-500 hover:text-red-600 transition">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
                 </div>
             </div>
         </div>
@@ -1676,7 +1679,7 @@
 
         // Start video call
         function startVideoCall() {
-          window.location.href='http://localhost:3000/StudentPortal.html';
+          window.location.href='/StudentPortal.html';
         //     document.getElementById('videoCallCounselor').textContent = counselorName;
         //     document.getElementById('videoCallModal').classList.remove('hidden');
             
